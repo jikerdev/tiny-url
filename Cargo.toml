@@ -18,3 +18,7 @@ serde_json = { version="1.0.2", optional = true }
 nanoid = "0.4.0"
 # sqlx
 sqlx = { version = "0.6", features = ["runtime-actix-native-tls", "mysql"] }
+# tera
+tera = { version = "1", default-features = false }
+# lazy_static
+lazy_static = "1.4.0"
