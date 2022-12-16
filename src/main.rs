@@ -10,7 +10,7 @@ async fn main() -> std::io::Result<()> {
             .service(api::links::get_all_links)
             .service(api::links::get_from_link)
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind(("127.0.0.1", 8081))?
     .run()
     .await
 }
