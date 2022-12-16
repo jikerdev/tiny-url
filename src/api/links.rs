@@ -19,11 +19,11 @@ struct Link {
 }
 
 #[derive(Deserialize, Clone)]
-struct ApiAddlink {
+struct ApiAddLink {
     origin_url: String,
 }
 
-impl ApiAddlink {
+impl ApiAddLink {
     fn to_new_link(self) -> Link {
         Link {
             tiny_code: nanoid!(5),
@@ -32,8 +32,23 @@ impl ApiAddlink {
     }
 }
 
+#[get("/links")]
+async fn get_all_links() -> impl Responder {
+    let mut links = Vec::new();
+    links.push(Link {
+        tiny_code: String::from("1111"),
+        origin_url: String::from("http://baidu.com"),
+    });
+    links.push(Link {
+        tiny_code: String::from("2222"),
+        origin_url: String::from("http://google.com"),
+    });
+    Json(ApiResult::success(links))
+}
+
+
 #[post("/create")]
-async fn create_link(link: Json<ApiAddlink>) -> impl Responder {
+async fn create_link(link: Json<ApiAddLink>) -> impl Responder {
     let new_link = link.0.to_new_link();
     let new_code = new_link.tiny_code.clone();
     Json(ApiResult::success(new_code))
@@ -51,18 +66,4 @@ async fn get_from_link(path: Path<String>) -> impl Responder {
     HttpResponse::Found()
         .append_header((header::LOCATION, url))
         .finish()
-}
-
-#[get("/links")]
-async fn get_all_links() -> impl Responder {
-    let mut links = Vec::new();
-    links.push(Link {
-        tiny_code: String::from("1111"),
-        origin_url: String::from("http://baidu.com"),
-    });
-    links.push(Link {
-        tiny_code: String::from("2222"),
-        origin_url: String::from("http://google.com"),
-    });
-    Json(ApiResult::success(links))
 }
