@@ -17,6 +17,6 @@ fi
 
 # phpmyadmin 没有启动则启动
 if [ -z "$(docker ps -q -f name=phpmyadmin)" ]; then
-  docker run -d --name phpmyadmin -p 8080:80 --link mysql:db -e PMA_HOST=db phpmyadmin/phpmyadmin
+  docker run -d --name phpmyadmin -p 8080:80 --link mysql:db -e PMA_HOST=db phpmyadmin
   echo "phpmyadmin container started"
 fi
