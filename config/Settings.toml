@@ -3,5 +3,5 @@ ip = "0.0.0.0"
 port = "8000"
 
 [database]
-url = "mysql://tiny_link:tiny_link@127.0.0.1:3306/db_tiny_link"
+url = "mysql://jiker:jiker2023PHY@rm-8vbq124v28hi819855o.mysql.zhangbei.rds.aliyuncs.com:3306/jiker"
 pool_size = "5"
